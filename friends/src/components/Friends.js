@@ -1,15 +1,24 @@
 import React from 'react';
-import { connect } from 'react-router';
+import { connect } from 'react-redux';
 
+import { getFriends } from '../actions';
 class Friends extends React.Component {
 
+    componentDidMount(){
+        this.props.getFriends();
+    }
     render() {
         return (
             <div>
-                <h1>Hello from protected Router</h1>
+                
             </div>
         );
     }
 }
 
-export default Friends;
+const mapStateToProps = state => ({
+    friends: state.friends,
+    getFriends: state.getFriends
+})
+
+export default connect(mapStateToProps, { getFriends }) (Friends);

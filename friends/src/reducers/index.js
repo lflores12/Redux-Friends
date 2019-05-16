@@ -1,11 +1,17 @@
 import {
     LOGGING_IN,
-    LOGIN_SUCCESS
+    LOGIN_SUCCESS,
+    FETCH_FRIENDS_START,
+    FETCH_FRIENDS_SUCCESS,
+    FETCH_FRIENDS_FAILURE
 } from '../actions'
 
 const initialState = {
     friends: [],
-    loggingIn: false
+    loggingIn: false,
+    fetchingFriends: false,
+    error: ''
+
 }
 
  const friendsReducer = (state = initialState, action) => {
@@ -21,9 +27,20 @@ const initialState = {
                 ...state,
                 loggingIn: false
             };
-
+        case FETCH_FRIENDS_START:
+            return {
+                ...state,
+                fetchingFriends: true
+            };
+        case FETCH_FRIENDS_SUCCESS:
+            return {
+                ...state,
+                error: '',
+                friends: action.payload,
+                fetchingFriends: false
+            };
         default: 
-        return state;
+            return state;
     }
 };
 
