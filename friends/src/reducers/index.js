@@ -1,7 +1,7 @@
 const initialState = {
-    friends: friends
+    friends: []
 }
 
 export const friendsReducer = (state = initialState, action) => {
-    
+
 }
